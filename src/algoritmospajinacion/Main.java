@@ -14,9 +14,10 @@ public class Main {
             frame.setLayout(new BorderLayout());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // as per your requirement.
-            MainPanel mainP = new MainPanel();
+            MainPanel mainP = new MainPanel(); 
             
-            // TODO Auto-generated method stub
+            
+            //  TODO Auto-generated method stub
             int cantidadPaginas,cantidadFrames;
             int []paginas;
 
