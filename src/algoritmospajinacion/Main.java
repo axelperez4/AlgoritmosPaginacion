@@ -1,6 +1,7 @@
 package AlgoritmosPajinacion;
 
 import java.awt.BorderLayout;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,10 +25,12 @@ public class Main {
 
             paginas= new int[cantidadPaginas];
 
+            Random random = new Random();
             for(int c=0;c<cantidadPaginas;c++){
-                    paginas[c]=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese valor de paginas ["+(c+1)+"]"));
+                    paginas[c]= random.nextInt(10);
+                    System.out.println(paginas[c]);
             }
-
+            System.out.println("===========================================");
             Fifo fifo=new Fifo(mainP);
             fifo.setCantidadFrames(cantidadFrames);
             fifo.setCantidadPaginas(cantidadPaginas);
