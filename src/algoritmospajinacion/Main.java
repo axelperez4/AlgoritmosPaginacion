@@ -10,14 +10,12 @@ public class Main {
 	public static void main(String[] args) {
             
             JFrame frame = new JFrame("Algoritmos");
-            frame.setSize(800,500);
+            frame.setSize(800,600);
             frame.setLayout(new BorderLayout());
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // as per your requirement.
             MainPanel mainP = new MainPanel(); 
             
-            
-            //  TODO Auto-generated method stub
             int cantidadPaginas,cantidadFrames;
             int []paginas;
 
@@ -43,7 +41,21 @@ public class Main {
             lru.setCantidadFrames(cantidadFrames);
             lru.setPaginas(paginas);
             lru.lru();
-                
+            
+            //Mostrar cadena generada en UI
+            String stringDeSolicitudes = "";
+            for (int j = 0; j < cantidadPaginas; j++) {
+                stringDeSolicitudes += String.valueOf(paginas[j]) + " -> ";
+            }
+            stringDeSolicitudes = stringDeSolicitudes.substring(0, stringDeSolicitudes.length() - 4); //Quitamos la última flecha
+            mainP.Cadena.setText(stringDeSolicitudes);
+            
+            //Definir el mejor algoritmo / más eficiente
+            if (Integer.parseInt(mainP.fifo_fallos.getText()) < Integer.parseInt(mainP.lru_fallos.getText())) {
+                mainP.mejorAlgoritmo.setText("FIFO");
+            }
+            else { mainP.mejorAlgoritmo.setText("LRU"); }
+            
             frame.add(mainP, BorderLayout.CENTER);
             frame.setVisible(true);
             
