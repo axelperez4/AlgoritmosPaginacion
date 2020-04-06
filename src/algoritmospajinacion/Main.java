@@ -18,18 +18,19 @@ public class Main {
             
             int cantidadPaginas,cantidadFrames;
             int []paginas;
-
+            String cadenas;
             cantidadPaginas=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese Cantidad de Páginas"));
             cantidadFrames=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese cantidad de frames"));
-
+            cadenas =      String.valueOf(JOptionPane.showInputDialog(null,"Ingrese cadena de peticiones"));
+            cadenas = cadenas.trim();
             paginas= new int[cantidadPaginas];
 
             Random random = new Random();
             for(int c=0;c<cantidadPaginas;c++){
-                    paginas[c]= random.nextInt(10);
-                    System.out.println(paginas[c]);
-            }
-            System.out.println("===========================================");
+                String[] dato = cadenas.replaceAll(" ", "").split(","); 
+                paginas[c]= Integer.valueOf(dato[c]); 
+            } 
+            
             Fifo fifo=new Fifo(mainP);
             fifo.setCantidadFrames(cantidadFrames);
             fifo.setCantidadPaginas(cantidadPaginas);
@@ -41,6 +42,12 @@ public class Main {
             lru.setCantidadFrames(cantidadFrames);
             lru.setPaginas(paginas);
             lru.lru();
+            
+            algoritmospajinacion.Optimal opt = new algoritmospajinacion.Optimal(mainP);
+            opt.setNoFrames(cantidadFrames);
+            opt.setNoPages(cantidadPaginas);
+            opt.setPages(paginas);
+            opt.getOptimal();
             
             //Mostrar cadena generada en UI
             String stringDeSolicitudes = "";

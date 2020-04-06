@@ -53,6 +53,9 @@ public class MainPanel extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        opt_frecuencia = new javax.swing.JLabel();
+        opt_fallos = new javax.swing.JLabel();
+        opt_rendimiento = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("INGENIERIA EN SISTEMAS"), "SISTEMAS OPERATIVOS II"));
@@ -163,8 +166,13 @@ public class MainPanel extends javax.swing.JPanel {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel12)
                                                     .addComponent(jLabel11)
-                                                    .addComponent(jLabel13))))
-                                        .addGap(261, 261, 261)
+                                                    .addComponent(jLabel13))
+                                                .addGap(26, 26, 26)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(opt_frecuencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(opt_rendimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(opt_fallos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(212, 212, 212)
                                         .addComponent(mejorAlgoritmo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel7))))
                 .addContainerGap(558, Short.MAX_VALUE))
@@ -225,12 +233,20 @@ public class MainPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label_fifo1)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
-                        .addGap(13, 13, 13)
-                        .addComponent(jLabel12)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel13)
+                                .addGap(13, 13, 13)
+                                .addComponent(jLabel12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(opt_fallos, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(opt_frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(opt_rendimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -261,5 +277,8 @@ public class MainPanel extends javax.swing.JPanel {
     public javax.swing.JLabel lru_frecuencia;
     public javax.swing.JLabel lru_rendimiento;
     public javax.swing.JLabel mejorAlgoritmo;
+    public javax.swing.JLabel opt_fallos;
+    public javax.swing.JLabel opt_frecuencia;
+    public javax.swing.JLabel opt_rendimiento;
     // End of variables declaration//GEN-END:variables
 }
