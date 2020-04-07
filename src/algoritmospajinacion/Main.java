@@ -1,6 +1,7 @@
 package AlgoritmosPajinacion;
 
 import java.awt.BorderLayout;
+import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,17 +20,33 @@ public class Main {
             int cantidadPaginas,cantidadFrames;
             int []paginas;
             String cadenas;
-            cantidadPaginas=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese Cantidad de Páginas"));
+            cadenas = String.valueOf(JOptionPane.showInputDialog(null,"Ingrese cadena de peticiones. Si desea generarla aleatoriamente, dejar vacío.")).trim();
+            //Para evitar que la cantidad de páginas y la longitud de la cadena ingresada difiera y se levante una excepción, 
+            //pedir cadena de solicitudes y sacar el número de páginas de allí.
+            if (cadenas.length() == 0){
+                cantidadPaginas=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese Cantidad de Páginas"));
+            }
+            else {
+                cantidadPaginas = cadenas.split(",").length;
+            }
             cantidadFrames=Integer.parseInt(JOptionPane.showInputDialog(null,"Ingrese cantidad de frames"));
-            cadenas =      String.valueOf(JOptionPane.showInputDialog(null,"Ingrese cadena de peticiones"));
-            cadenas = cadenas.trim();
             paginas= new int[cantidadPaginas];
 
-            Random random = new Random();
-            for(int c=0;c<cantidadPaginas;c++){
+            //Si no se ingresó cadena de solicitudes, generar una. Si se ingresó, utilizar esa.
+            if (cadenas.length() == 0)
+            {
+                Random random = new Random();
+                for(int c=0;c<cantidadPaginas;c++){
+                    paginas[c]= random.nextInt(10);
+                }
+            }
+            else {
                 String[] dato = cadenas.replaceAll(" ", "").split(","); 
-                paginas[c]= Integer.valueOf(dato[c]); 
-            } 
+                for(int c=0;c<cantidadPaginas;c++){
+                    paginas[c]= Integer.valueOf(dato[c]); 
+                } 
+            }
+            
             
             Fifo fifo=new Fifo(mainP);
             fifo.setCantidadFrames(cantidadFrames);
@@ -58,11 +75,21 @@ public class Main {
             mainP.Cadena.setText(stringDeSolicitudes);
             
             //Definir el mejor algoritmo / más eficiente
-            if (Integer.parseInt(mainP.fifo_fallos.getText()) < Integer.parseInt(mainP.lru_fallos.getText())) {
-                mainP.mejorAlgoritmo.setText("FIFO");
+            String mejores = "";
+            int[] fallos = {Integer.parseInt(mainP.fifo_fallos.getText()), Integer.parseInt(mainP.lru_fallos.getText()), Integer.parseInt(mainP.opt_fallos.getText())};
+            int min = Arrays.stream(fallos).min().getAsInt();
+            if (Integer.parseInt(mainP.fifo_fallos.getText()) == min) {
+                mejores = "FIFO, ";
             }
-            else { mainP.mejorAlgoritmo.setText("LRU"); }
-            
+            if (Integer.parseInt(mainP.lru_fallos.getText()) == min) {
+                mejores += "LRU, ";
+            }
+            if (Integer.parseInt(mainP.opt_fallos.getText()) == min) {
+                mejores += "OPTIMO, ";
+            }
+            mejores = mejores.substring(0, mejores.length() - 2);
+            mainP.mejorAlgoritmo.setText(mejores);
+             
             frame.add(mainP, BorderLayout.CENTER);
             frame.setVisible(true);
             
